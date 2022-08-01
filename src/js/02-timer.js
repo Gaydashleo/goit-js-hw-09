@@ -25,25 +25,25 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-// const options = {
-//   enableTime: true,
-//   time_24hr: true,
-//   defaultDate: Date.now(),
-//   minuteIncrement: 1,
-//   onClose(selectedDates) {
+const options = {
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: Date.now(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
 
-//     if(Date.now() >= selectedDates[0]) {
-//       buttonStart.disabled = true;
-//       window.alert("Please choose a date in the future");
-//           } else {
-//       chooseDate = selectedDates[0].getTime();
-//       buttonStart.disabled = false;
-//       return;
-//           };
+    if(Date.now() >= selectedDates[0]) {
+      buttonStart.disabled = true;
+      window.alert("Please choose a date in the future");
+          } else {
+      chooseDate = selectedDates[0].getTime();
+      buttonStart.disabled = false;
+      return;
+          };
     
-//       console.log(selectedDates[0]);
-//   }
-// };
+      console.log(selectedDates[0]);
+  }
+};
 
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
@@ -72,12 +72,8 @@ const timer = {
       minutesEl.textContent = minutes;
       secondsEl.textContent = seconds;
       console.log(`${days}:${hours}:${minutes}:${seconds}`);
-    //   if (deltaTime <= 0) {
-    //     stop();
-    // };
-    }, 1000);
+        }, 1000);
   },
-
   
   stop() {
     clearInterval(this.intervalId);
@@ -85,28 +81,6 @@ const timer = {
     
   }
 }
-
-const options = {
-  enableTime: true,
-  time_24hr: true,
-  defaultDate: Date.now(),
-  minuteIncrement: 1,
-  onClose(selectedDates) {
-
-    if(Date.now() >= selectedDates[0]) {
-      buttonStart.disabled = true;
-      window.alert("Please choose a date in the future");
-          } else {
-      chooseDate = selectedDates[0].getTime();
-      buttonStart.disabled = false;
-      return;
-          };
-    // if (deltaTime <= 0) {
-    //     stop();
-    // };
-      console.log(selectedDates[0]);
-  }
-};
 
 buttonStart.addEventListener('click', () => { timer.start() });
 flatpickr("input#datetime-picker", options);
